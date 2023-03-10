@@ -1,5 +1,13 @@
-<div class="card mt-3 mb-3" style="max-width: 540px" (click)="onRecipeSelect()">
-  <a href="#" class="row g-0 text-decoration-none text-dark">
+<div
+  class="card mt-3 mb-3"
+  style="max-width: 540px"
+  routerLinkActive="bg-light"
+>
+  <a
+    class="row g-0 text-decoration-none text-dark"
+    [routerLink]="[index]"
+    style="cursor: pointer"
+  >
     <div class="col-md-8">
       <div class="card-body">
         <h5 class="card-title">{{ recipe.name }}</h5>
