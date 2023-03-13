@@ -8,26 +8,31 @@ import { Recipe } from "./recipe.model";
 @Injectable({ providedIn: 'root' })
 export class RecipeService {
     recipeChanged = new Subject<Recipe[]>();
-    private recipes: Recipe[] = [
-        new Recipe(
-            "Mexican Hotpot",
-            "This is a eatable item",
-            "https://source.unsplash.com/random/?Food/",
-            [
-                new Ingredient('Meat', 5),
-                new Ingredient('Milk', 3)
-            ]),
-        new Recipe(
-            "Mojito",
-            "This is drinkable item",
-            "https://source.unsplash.com/random/?Drink/",
-            [
-                new Ingredient('Soda', 7),
-                new Ingredient('Mint', 4)
-            ])
-    ];
+    // private recipes: Recipe[] = [
+    //     new Recipe(
+    //         "Mexican Hotpot",
+    //         "This is a eatable item",
+    //         "https://source.unsplash.com/random/?Food/",
+    //         [
+    //             new Ingredient('Meat', 5),
+    //             new Ingredient('Milk', 3)
+    //         ]),
+    //     new Recipe(
+    //         "Mojito",
+    //         "This is drinkable item",
+    //         "https://source.unsplash.com/random/?Drink/",
+    //         [
+    //             new Ingredient('Soda', 7),
+    //             new Ingredient('Mint', 4)
+    //         ])
+    // ];
+    private recipes: Recipe[] = [];
     constructor(private shoppingListService: ShoppingListService) {
 
+    }
+    setRecipe(recipes: Recipe[]) {
+        this.recipes = recipes
+        this.recipeChanged.next(this.recipes.slice())
     }
     getRecipes() {
         return this.recipes.slice();
