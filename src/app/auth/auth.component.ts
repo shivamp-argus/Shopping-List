@@ -34,16 +34,17 @@ export class AuthComponent implements OnDestroy {
     let authObs: Observable<AuthResponse>
 
     if (this.isLoggedIn) {
-      AlertComponent
+
       authObs = this.authService.login(email, password)
-      this.router.navigate(['/recipes'])
+
     } else {
       authObs = this.authService.signUp(email, password)
-      this.router.navigate(['/recipes'])
+
     }
     authObs.subscribe(resData => {
       console.log(resData)
       this.isLoading = false
+      this.router.navigate(['/recipes'])
     },
       errorMessage => {
         this.error = errorMessage
